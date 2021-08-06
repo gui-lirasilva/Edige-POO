@@ -1,75 +1,81 @@
+import java.math.BigDecimal;
+
 public class Livro {
 
     String titulo;
     String isbn;
     String resumo;
     String sumario;
-    int numeroDePaginas;
+    Integer numeroDePaginas;
     Autor autor;
     String categoria;
-    Double preco;
+    BigDecimal preco;
 
-    public String getTitulo() {
-        return titulo;
+    public Livro(String titulo, String isbn, String resumo, String sumario, Integer numeroDePaginas, Autor autor, String categoria,BigDecimal preco){
+        setTitulo(titulo);
+        setIsbn(isbn);
+        setResumo(resumo);
+        setSumario(sumario);
+        setNumeroDePaginas(numeroDePaginas);
+        this.autor = autor;
+        this.categoria = categoria;
+        this.preco = preco;
     }
 
+
     public void setTitulo(String titulo) {
+        if(titulo.length() > 250){
+            throw new IllegalArgumentException("Tamanho superior a 250 caracteres");
+        }
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Não pode receber nulo ou espaço vazio");
+        }
+
         this.titulo = titulo;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
 
-    public void setIsbn(String isbn) {
+    public void setIsbn(String isbn) { //validação diferente
+        boolean validaIsbn = isbn.startsWith("978");
+
+        if (!validaIsbn){
+            throw new IllegalArgumentException("O ISBN deve começar com 978");
+        }
+
+        if(isbn.length() != 13){
+            throw new IllegalArgumentException("ISBN deve ter 13 caracteres");
+        }
+
         this.isbn = isbn;
     }
 
-    public String getResumo() {
-        return resumo;
-    }
 
     public void setResumo(String resumo) {
+        if (resumo == null || resumo.trim().isEmpty()) {
+            throw new IllegalArgumentException("Não pode receber nulo ou espaço vazio");
+        }
+        if(resumo.length() > 500){
+            throw new IllegalArgumentException("Tamanho do resumo superior a 500 caracteres");
+        }
+
         this.resumo = resumo;
     }
 
-    public String getSumario() {
-        return sumario;
-    }
 
     public void setSumario(String sumario) {
+        if (sumario == null || sumario.trim().isEmpty()) {
+            throw new IllegalArgumentException("Não pode receber nulo ou espaço vazio");
+        }
+
         this.sumario = sumario;
     }
 
-    public int getNumeroDePaginas() {
-        return numeroDePaginas;
-    }
 
-    public void setNumeroDePaginas(int numeroDePaginas) {
+    public void setNumeroDePaginas(Integer numeroDePaginas) {
+        if(numeroDePaginas == null){
+            throw new IllegalArgumentException("Não pode receber nulo");
+        }
+
         this.numeroDePaginas = numeroDePaginas;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
     }
 }
