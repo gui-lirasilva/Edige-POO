@@ -1,15 +1,17 @@
+package br.com.edige.modelo;
+
 import java.math.BigDecimal;
 
 public class Livro {
 
-    String titulo;
-    String isbn;
-    String resumo;
-    String sumario;
-    Integer numeroDePaginas;
-    Autor autor;
-    String categoria;
-    BigDecimal preco;
+    private String titulo;
+    private String isbn;
+    private String resumo;
+    private String sumario;
+    private Integer numeroDePaginas;
+    private Autor autor;
+    private String categoria;
+    private BigDecimal preco;
 
     public Livro(String titulo, String isbn, String resumo, String sumario, Integer numeroDePaginas, Autor autor, String categoria,BigDecimal preco){
         setTitulo(titulo);

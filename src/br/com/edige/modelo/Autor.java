@@ -1,3 +1,7 @@
+package br.com.edige.modelo;
+
+import java.util.Objects;
+
 public class Autor {
 
     private String email;
@@ -60,5 +64,15 @@ public class Autor {
         this.biografia = biografia;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.email);
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        Autor outroAutor = (Autor) obj;
+
+        return this.email.equals(outroAutor.email);
+    }
 }
