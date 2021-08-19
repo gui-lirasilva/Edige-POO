@@ -75,4 +75,9 @@ public class Autor {
 
         return this.email.equals(outroAutor.email);
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }
